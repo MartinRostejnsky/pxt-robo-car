@@ -14,7 +14,7 @@
 #     while line_tracking == 1:
 #         print(line_tracking)
 #         left = pins.digital_read_pin(DigitalPin.P13)
-#         right = pins.digital_read_pin(DigitalPin.P2)
+#         right = pins.digital_read_pin(DigitalPin.P14)
 #         pause(400)
 #         if left == right:
 #             PCAmotor.motor_run(PCAmotor.Motors.M1, 140)
@@ -78,21 +78,22 @@
 # # basic.forever(on_forever)
 
 def on_forever():
-    right = pins.digital_read_pin(DigitalPin.P2)
+    right = pins.digital_read_pin(DigitalPin.P14)
     left = pins.digital_read_pin(DigitalPin.P13)
-    pause(500)
-    if left == right:
-        PCAmotor.motor_run(PCAmotor.Motors.M1, 160)
-        PCAmotor.motor_run(PCAmotor.Motors.M2, 160)
-    elif left == 1:
-        PCAmotor.motor_run(PCAmotor.Motors.M1, 0)
-        PCAmotor.motor_run(PCAmotor.Motors.M2, 160)
+    pause(20)
+    if left == 0 and right == 0:
+        PCAmotor.motor_run(PCAmotor.Motors.M1, -160)
+        PCAmotor.motor_run(PCAmotor.Motors.M4, 160)
     elif right == 1:
-        PCAmotor.motor_run(PCAmotor.Motors.M1, 160)
-        PCAmotor.motor_run(PCAmotor.Motors.M2, 0)
+        PCAmotor.motor_run(PCAmotor.Motors.M1, 0)
+        PCAmotor.motor_run(PCAmotor.Motors.M4, 160)
+    elif left == 1:
+         PCAmotor.motor_run(PCAmotor.Motors.M1, -160)
+         PCAmotor.motor_run(PCAmotor.Motors.M4, 0)
     pause(50)
     PCAmotor.motor_run(PCAmotor.Motors.M1, 0)
-    PCAmotor.motor_run(PCAmotor.Motors.M2, 0)
-    pause(250)
-
+    PCAmotor.motor_run(PCAmotor.Motors.M4, 0)
+    pause(20)
 basic.forever(on_forever)
+
+
