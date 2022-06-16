@@ -80,20 +80,24 @@
 def on_forever():
     right = pins.digital_read_pin(DigitalPin.P14)
     left = pins.digital_read_pin(DigitalPin.P13)
-    pause(20)
+    pause(10)
     if left == 0 and right == 0:
-        PCAmotor.motor_run(PCAmotor.Motors.M1, -160)
-        PCAmotor.motor_run(PCAmotor.Motors.M4, 160)
+        PCAmotor.motor_run(PCAmotor.Motors.M1, -200)
+        PCAmotor.motor_run(PCAmotor.Motors.M4, 200)
     elif right == 1:
         PCAmotor.motor_run(PCAmotor.Motors.M1, 0)
-        PCAmotor.motor_run(PCAmotor.Motors.M4, 160)
+        PCAmotor.motor_run(PCAmotor.Motors.M4, 200)
     elif left == 1:
-         PCAmotor.motor_run(PCAmotor.Motors.M1, -160)
-         PCAmotor.motor_run(PCAmotor.Motors.M4, 0)
-    pause(50)
+        PCAmotor.motor_run(PCAmotor.Motors.M1, -200)
+        PCAmotor.motor_run(PCAmotor.Motors.M4, 0)
+    if left == 1 and right == 1:
+        PCAmotor.motor_run(PCAmotor.Motors.M1, 0)
+        PCAmotor.motor_run(PCAmotor.Motors.M4, 0)
+
+    pause(100)
     PCAmotor.motor_run(PCAmotor.Motors.M1, 0)
     PCAmotor.motor_run(PCAmotor.Motors.M4, 0)
-    pause(20)
+    pause(10)
 basic.forever(on_forever)
 
 
