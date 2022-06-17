@@ -1,4 +1,3 @@
-
 #pin_L = DigitalPin.P13
 #pin_R = DigitalPin.P14
 speed = 220
@@ -45,14 +44,14 @@ def on_bluetooth_disconnected():
         if left == 0 and right == 0:
             PCAmotor.motor_run(PCAmotor.Motors.M1, -200)
             PCAmotor.motor_run(PCAmotor.Motors.M4, 200)
+        elif left == 1 and right == 1:
+            PCAmotor.motor_run(PCAmotor.Motors.M1, 25)
+            PCAmotor.motor_run(PCAmotor.Motors.M4, 25)
         elif right == 1:
             PCAmotor.motor_run(PCAmotor.Motors.M1, 0)
             PCAmotor.motor_run(PCAmotor.Motors.M4, 200)
         elif left == 1:
             PCAmotor.motor_run(PCAmotor.Motors.M1, -200)
-            PCAmotor.motor_run(PCAmotor.Motors.M4, 0)
-        if left == 1 and right == 1:
-            PCAmotor.motor_run(PCAmotor.Motors.M1, 0)
             PCAmotor.motor_run(PCAmotor.Motors.M4, 0)
         pause(80)
 bluetooth.on_bluetooth_disconnected(on_bluetooth_disconnected)
